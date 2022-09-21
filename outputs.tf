@@ -12,3 +12,7 @@ output "task_role" {
     name = aws_iam_role.task_role.name
   }
 }
+
+output "security_group_id" {
+  value = aws_security_group.this.id
+}
