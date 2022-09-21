@@ -53,3 +53,8 @@ variable "create_lb" {
   type = bool
   default = false
 }
+
+variable "registry_arn" {
+  type = string
+  default = ""
+}
