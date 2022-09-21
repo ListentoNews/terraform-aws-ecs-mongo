@@ -21,6 +21,7 @@ resource "aws_ecs_task_definition" "this" {
   family                = var.name
   container_definitions = data.template_file.container_definitions.rendered
   execution_role_arn    = aws_iam_role.this.arn
+  task_role_arn         = aws_iam_role.task_role.arn
 
   cpu    = var.cpu
   memory = var.memory

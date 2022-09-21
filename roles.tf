@@ -7,3 +7,7 @@ resource "aws_iam_role_policy_attachment" "this" {
   role       = aws_iam_role.this.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
+
+resource "aws_iam_role" "task_role" {
+  assume_role_policy = file("${path.module}/policies/ecs-task-execution-role-policy.json")
+}
