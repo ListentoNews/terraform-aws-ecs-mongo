@@ -48,3 +48,8 @@ variable "environment" {
   type    = list(object({ name = string, value = string }))
   default = []
 }
+
+variable "create_lb" {
+  type = bool
+  default = false
+}

@@ -22,6 +22,8 @@ resource "aws_security_group_rule" "egress_all" {
 }
 
 resource "aws_lb" "this" {
+  count = var.create_lb ? 1 : 0
+
   name               = var.name
   internal           = true
   load_balancer_type = "network"
@@ -29,6 +31,8 @@ resource "aws_lb" "this" {
 }
 
 resource "aws_lb_target_group" "this" {
+  count = var.create_lb ? 1 : 0
+
   name                 = var.name
   port                 = 27017
   protocol             = "TCP"
@@ -43,7 +47,8 @@ resource "aws_lb_target_group" "this" {
 }
 
 resource "aws_lb_listener" "this" {
-  load_balancer_arn = aws_lb.this.id
+  count = var.create_lb ? 1 : 0
+  load_balancer_arn = aws_lb.this[0].id
   port              = 27017
   protocol          = "TCP"
 

@@ -61,9 +61,12 @@ resource "aws_ecs_service" "this" {
     subnets          = var.subnets
   }
 
-  load_balancer {
-    target_group_arn = aws_lb_target_group.this.arn
-    container_name   = var.name
-    container_port   = 27017
+  dynamic "load_balancer" {
+    for_each = var.create_lb ? [1] : []
+    content {
+      target_group_arn = aws_lb_target_group.this.arn
+      container_name   = var.name
+      container_port   = 27017
+    }
   }
 }
