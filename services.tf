@@ -69,4 +69,11 @@ resource "aws_ecs_service" "this" {
       container_port   = 27017
     }
   }
+
+  dynamic "service_registries" {
+    for_each = var.registry_arn == "" ? [] : [1]
+    content {
+      registry_arn = var.registry_arn
+    }
+  }
 }
