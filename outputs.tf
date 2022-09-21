@@ -2,15 +2,12 @@ output "revision" {
   value = aws_ecs_task_definition.this.revision
 }
 
-output "execution_role_arn" {
-  value = aws_iam_role.this.arn
+output "execution_role_name" {
+  value = aws_iam_role.this.name
 }
 
-output "task_role" {
-  value = {
-    arn = aws_iam_role.task_role.arn
-    name = aws_iam_role.task_role.name
-  }
+output "task_role_name" {
+  value = aws_iam_role.task_role.name
 }
 
 output "security_group_id" {
